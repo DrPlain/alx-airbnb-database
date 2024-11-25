@@ -101,19 +101,6 @@
 
 ---
 
-### 7. Locations (Optional Normalization)
-
-- **Attributes**:
-  - `location_id` (PK)
-  - `address`
-  - `city`
-  - `state`
-  - `country`
-- **Relationships**:
-  - A location is **linked to** a property.
-
----
-
 ## Key Relationships
 
 1. **User ↔ Property**: A user (host) can have multiple properties (1-to-many).
