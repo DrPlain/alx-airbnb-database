@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Role (
 );
 CREATE TABLE IF NOT EXISTS Property (
     property_id CHAR(36) PRIMARY KEY,
+    host_id CHAR(36) NOT NULL REFERENCES User(user_id),
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     location_id CHAR(36) NOT NULL REFERENCES Location(location_id),
@@ -36,12 +37,12 @@ CREATE TABLE IF NOT EXISTS Booking (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
-    status ENUM('pending', 'confirmed', 'canceled') NOT NULL,
+    status ENUM('pending', 'confirmed', 'cancelled') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS Payment (
     payment_id CHAR(36) PRIMARY KEY,
-    booking_id CHAR(36) NOT NULL REFERENCES Booking(booking_id),
+    booking_id CHAR(36) NOT NULL REFERENCES Booking(booking_id ),
     amount DECIMAL(10, 2) NOT NULL,
     payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     payment_method_id CHAR(36) NOT NULL REFERENCES PaymentMethod(payment_method_id)
