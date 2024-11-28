@@ -86,7 +86,7 @@ VALUES
     ('2bbb33cc-444d-555e-666f-777gg888999h', '8cd456gh-789i-01j2-k345-lmno67890123', '9g5aa6d3-1c8c-7fd8-03d6-d87e9g64fd16', '2024-12-10', '2024-12-15', 1500.00, 'pending', CURRENT_TIMESTAMP),
     ('3ccc44dd-555e-666f-777g-888hh999aaa1', '7bc567hi-890j-12k3-l456-mnop78901234', '13k9ee1h-5g2g-2jh2-07h0-h21fd098jh50', '2024-12-20', '2024-12-25', 2500.00, 'confirmed', CURRENT_TIMESTAMP),
     ('4ddd55ee-666f-777g-888h-999ii000bbb2', '6ab678ij-901k-23l4-m567-opqr89012345', '7f3bb6c2-1b8b-5dc7-02b4-a87c8f53eb14', '2025-01-01', '2025-01-05', 1000.00, 'cancelled', CURRENT_TIMESTAMP),
-    ('5eee66ff-777g-888h-999i-000jj111ccc3', '5fg789kl-012l-34m5-n678-pqrs90123456', '18x7pl9h-4j1h-4zz1-08i1-i32gd099ki50', '2025-01-10', '2025-01-15', 500.00, 'confirmed', CURRENT_TIMESTAMP);
+    ('5eee66ff-777g-888h-999i-000jj111ccc3', '5fg789kl-012l-34m5-n678-pqrs90123456', '6f2aa5b2-0a7a-4db6-91b3-b768f56dca11', '2025-01-10', '2025-01-15', 500.00, 'confirmed', CURRENT_TIMESTAMP);
 
 
 -- Insert Data into Review
