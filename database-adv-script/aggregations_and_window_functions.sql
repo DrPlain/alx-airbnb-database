@@ -1,5 +1,5 @@
 -- Write a query to find the total number of bookings made by each user, using the COUNT function and GROUP BY clause.
-SELECT User.first_name, COUNT(Booking.booking_id) as number_bookings
+EXPLAIN ANALYZE SELECT User.first_name, COUNT(Booking.booking_id) as number_bookings
 FROM User
 INNER JOIN Booking
 ON User.user_id = Booking.user_id
@@ -15,12 +15,12 @@ ORDER BY number_bookings DESC;
     -- Assigns the same rank to rows with identical values in the ordering column (ties).
     -- Skips subsequent ranks if there are ties.
 
-SELECT property_id, COUNT(property_id) AS total_booking,
-    ROW_NUMBER() OVER (ORDER BY COUNT(property_id)) AS ranking
-FROM Booking
-GROUP BY property_id
+-- SELECT property_id, COUNT(property_id) AS total_booking,
+--     ROW_NUMBER() OVER (ORDER BY COUNT(property_id)) AS ranking
+-- FROM Booking
+-- GROUP BY property_id
 
-SELECT property_id, COUNT(property_id) AS total_booking,
-    RANK() OVER (ORDER BY COUNT(property_id)) AS ranking
-FROM Booking
-GROUP BY property_id
+-- SELECT property_id, COUNT(property_id) AS total_booking,
+--     RANK() OVER (ORDER BY COUNT(property_id)) AS ranking
+-- FROM Booking
+-- GROUP BY property_id
