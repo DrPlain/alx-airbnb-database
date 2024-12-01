@@ -58,15 +58,17 @@
 Initial query
 EXPLAIN ANALYZE
 SELECT *
-FROM Booking
-LEFT JOIN User
-ON Booking.user_id = User.user_id
-LEFT JOIN Property
-ON Booking.property_id = Property.property_id
-LEFT JOIN Payment
-ON Booking.booking_id = Payment.booking_id
-LEFT JOIN PaymentMethod
-ON Payment.payment_method_id = PaymentMethod.payment_method_id
+FROM Booking AS b
+LEFT JOIN User AS u
+ON b.user_id = u.user_id
+LEFT JOIN Property AS p
+ON b.property_id = p.property_id
+LEFT JOIN Payment AS py
+ON b.booking_id = py.booking_id
+LEFT JOIN PaymentMethod AS pm
+ON py.payment_method_id = pm.payment_method_id
+WHERE b.start_date IS NOT NULL
+  AND u.email IS NOT NULL;
 
 EXPLAIN ANALYZE
 SELECT *
