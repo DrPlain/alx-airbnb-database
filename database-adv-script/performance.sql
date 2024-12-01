@@ -1,57 +1,57 @@
 -- Query to retrieve all bookings along with user, property, and payment details
 
 EXPLAIN ANALYZE
-``SELECT 
-    b.booking_id,
-    b.start_date,
-    b.end_date,
-    b.total_price,
-    b.status AS booking_status,
-    u.user_id AS user_id,
-    CONCAT(u.first_name, ' ', u.last_name) AS user_name,
-    u.email AS user_email,
-    u.phone_number AS user_phone,
-    p.property_id AS property_id,
-    p.name AS property_name,
-    p.description AS property_description,
-    p.price_per_night AS property_price,
-    l.address AS property_address,
-    l.city AS property_city,
-    l.state AS property_state,
-    l.country AS property_country,
-    py.payment_id AS payment_id,
-    py.amount AS payment_amount,
-    py.payment_date AS payment_date,
-    pm.method_name AS payment_method
-FROM Booking b
-LEFT JOIN User u ON b.user_id = u.user_id
-LEFT JOIN Property p ON b.property_id = p.property_id
-LEFT JOIN Location l ON p.location_id = l.location_id
-LEFT JOIN Payment py ON b.booking_id = py.booking_id
-LEFT JOIN PaymentMethod pm ON py.payment_method_id = pm.payment_method_id
-ORDER BY b.created_at DESC;``
+SELECT 
+    Booking.booking_id,
+    Booking.start_date,
+    Booking.end_date,
+    Booking.total_price,
+    Booking.status AS booking_status,
+    User.user_id AS user_id,
+    CONCAT(User.first_name, ' ', User.last_name) AS user_name,
+    User.email AS user_email,
+    User.phone_number AS user_phone,
+    Property.property_id AS property_id,
+    Property.name AS property_name,
+    Property.description AS property_description,
+    Property.price_per_night AS property_price,
+    Location.address AS property_address,
+    Location.city AS property_city,
+    Location.state AS property_state,
+    Location.country AS property_country,
+    Payment.payment_id AS payment_id,
+    Payment.amount AS payment_amount,
+    Payment.payment_date AS payment_date,
+    PaymentMethod.method_name AS payment_method
+FROM Booking
+LEFT JOIN User ON Booking.user_id = User.user_id
+LEFT JOIN Property ON Booking.property_id = Property.property_id
+LEFT JOIN Location ON Property.location_id = Location.location_id
+LEFT JOIN Payment ON Booking.booking_id = Payment.booking_id
+LEFT JOIN PaymentMethod ON Payment.payment_method_id = PaymentMethod.payment_method_id
+ORDER BY Booking.created_at DESC;
 
 -- Optimized query for retrieving bookings along with necessary details
 SELECT 
-    b.booking_id,
-    b.start_date,
-    b.end_date,
-    b.total_price,
-    b.status AS booking_status,
-    CONCAT(u.first_name, ' ', u.last_name) AS user_name,
-    u.email AS user_email,
-    p.name AS property_name,
-    p.price_per_night AS property_price,
-    l.city AS property_city,
-    py.amount AS payment_amount,
-    py.payment_date AS payment_date,
-    pm.method_name AS payment_method
-FROM Booking b
-LEFT JOIN User u ON b.user_id = u.user_id
-LEFT JOIN Property p ON b.property_id = p.property_id
-LEFT JOIN Location l ON p.location_id = l.location_id
-LEFT JOIN Payment py ON b.booking_id = py.booking_id
-LEFT JOIN PaymentMethod pm ON py.payment_method_id = pm.payment_method_id
-WHERE b.start_date > CURRENT_DATE - INTERVAL 1 YEAR -- Filter for recent bookings
-ORDER BY b.created_at DESC;
+    Booking.booking_id,
+    Booking.start_date,
+    Booking.end_date,
+    Booking.total_price,
+    Booking.status AS booking_status,
+    CONCAT(User.first_name, ' ', User.last_name) AS user_name,
+    User.email AS user_email,
+    Property.name AS property_name,
+    Property.price_per_night AS property_price,
+    Location.city AS property_city,
+    Payment.amount AS payment_amount,
+    Payment.payment_date AS payment_date,
+    PaymentMethod.method_name AS payment_method
+FROM Booking
+LEFT JOIN User ON Booking.user_id = User.user_id
+LEFT JOIN Property ON Booking.property_id = Property.property_id
+LEFT JOIN Location ON Property.location_id = Location.location_id
+LEFT JOIN Payment ON Booking.booking_id = Payment.booking_id
+LEFT JOIN PaymentMethod  ON Payment.payment_method_id = PaymentMethod.payment_method_id
+WHERE Booking.start_date > CURRENT_DATE - INTERVAL 1 YEAR -- Filter for recent bookings
+ORDER BY Booking.created_at DESC;
 
